@@ -1,32 +1,47 @@
 function handlePositives(e) {
-    let input = document.getElementById("challenge1").value;
+    let result;
+    try {
+        let input = document.getElementById("challenge1").value;
 
-    let res = input.split(" ").map(function (item) {
-        return parseFloat(item);
-    });
+        let res = input.split(" ").map(function (item) {
+            return parseFloat(item);
+        });
 
-    let final = positives(res);
-    document.getElementById("output1").innerHTML = final;
+        result = positives(res);
+    } catch (error) {
+        result = "Unexpected Input";
+    }
+    document.getElementById("output1").innerHTML = result;
 }
 function handleMerge(e) {
-    let input1 = document.getElementById("challenge2-1").value;
-    let input2 = document.getElementById("challenge2-2").value;
+    let result;
+    try {
+        let input1 = document.getElementById("challenge2-1").value;
+        let input2 = document.getElementById("challenge2-2").value;
 
-    let res1 = input1.split(" ");
-    let res2 = input2.split(" ");
+        let res1 = input1.split(" ");
+        let res2 = input2.split(" ");
 
-    let final = mergeArrays(res1, res2);
-    document.getElementById("output2").innerHTML = final;
+        result = mergeArrays(res1, res2);
+    } catch (error) {
+        result = "Unexpected Input";
+    }
+
+    document.getElementById("output2").innerHTML = result;
 }
 function handleObjectCheck(e) {
-    let input1 = document.getElementById("challenge3-1").value; // {"hello":"heelll","test" : "teeest"}
-    let input2 = document.getElementById("challenge3-2").value; // hello
-    let input3 = document.getElementById("challenge3-3").value;
+    let result;
+    try {
+        let input1 = document.getElementById("challenge3-1").value; // {"hello":"heelll","test" : "teeest"}
+        let input2 = document.getElementById("challenge3-2").value; // hello
+        let input3 = document.getElementById("challenge3-3").value;
 
-    obj = JSON.parse(input1);
-    console.log(obj);
-    if (input2 in obj) result = "Found!";
-    else result = "Not Found !";
+        obj = JSON.parse(input1);
+        if (input2 in obj) result = "Found!";
+        else result = "Not Found !";
+    } catch (error) {
+        result = "Unexpected Input : Enter A Valid Object !";
+    }
 
     document.getElementById("output3").innerHTML = result;
 }
@@ -44,37 +59,47 @@ function handleTypeCheck(e) {
     document.getElementById("output4").innerHTML = result;
 }
 function handleCapitalizeFirst(e) {
-    let input1 = document.getElementById("challenge5-1").value;
-   
-    let n = input1.split(" ").map((caps)=>{
-        return caps.charAt(0).toUpperCase() + caps.slice(1);
-    }).join(' ');
-    
+    let n;
+    try {
+        let input1 = document.getElementById("challenge5-1").value;
+
+        n = input1.split(" ").map((caps) => {
+            return caps.charAt(0).toUpperCase() + caps.slice(1);
+        }).join(' ');
+    } catch (error) {
+        result = "Unexpected Input";
+    }
+
     document.getElementById("output5").innerHTML = n;
 }
 
 function handleBubbleSort(e) {
-    let input1 = document.getElementById("challenge6-1").value;
-    let obj = JSON.parse(input1);
+    try {
+        let input1 = document.getElementById("challenge6-1").value;
+        let obj = JSON.parse(input1);
 
-    let bubbleSort = (inputArr) => {
-        let len = inputArr.length;
-        for (let i = 0; i < len; i++) {
-            for (let j = 0; j < len; j++) {
-                if (inputArr[j] > inputArr[j + 1]) {
-                    let tmp = inputArr[j];
-                    inputArr[j] = inputArr[j + 1];
-                    inputArr[j + 1] = tmp;
+        let bubbleSort = (inputArr) => {
+            let len = inputArr.length;
+            for (let i = 0; i < len; i++) {
+                for (let j = 0; j < len; j++) {
+                    if (inputArr[j] > inputArr[j + 1]) {
+                        let tmp = inputArr[j];
+                        inputArr[j] = inputArr[j + 1];
+                        inputArr[j + 1] = tmp;
+                    }
                 }
             }
-        }
-        return inputArr;
-    };
+            return inputArr;
+        };
 
-    if (!Array.isArray(obj)) result = "Please enter an array";
-    else{
-        result = bubbleSort(obj);
+        if (!Array.isArray(obj)) result = "Please enter an array";
+        else {
+            result = bubbleSort(obj);
+        }
+    } catch (error) {
+        result = "Unexpected Input : Enter A Valid Object !";
     }
+
     document.getElementById("output6").innerHTML = result;
 
 }
