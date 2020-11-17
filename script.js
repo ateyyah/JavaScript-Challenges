@@ -16,7 +16,7 @@ function handleMerge(e) {
     let res1 = input1.split(" ");
     let res2 = input2.split(" ");
 
-    let final = mergeArrays(arr1, arr2);
+    let final = mergeArrays(res1, res2);
     document.getElementById("output2").innerHTML = final;
 }
 function handleObjectCheck(e) {
@@ -43,6 +43,15 @@ function handleTypeCheck(e) {
     }
 
     document.getElementById("output4").innerHTML = result;
+}
+function handleCapitalizeFirst(e) {
+    let input1 = document.getElementById("challenge5-1").value;
+   
+    let n = input1.split(" ").map((caps)=>{
+        return caps.charAt(0).toUpperCase() + caps.slice(1);
+    }).join(' ');
+    
+    document.getElementById("output5").innerHTML = n;
 }
 
 function positives(arr) {
